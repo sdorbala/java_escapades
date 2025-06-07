@@ -1,0 +1,4 @@
+grant codeBase "file:/home/logik/src/java/standalonecrawler" {
+    permission javax.net.ssl.SSLPermission "getSSLSessionContext";
+    permission javax.net.ssl.SSLPermission "setDefaultSSLContext"; // Example of another SSL permission
+};
