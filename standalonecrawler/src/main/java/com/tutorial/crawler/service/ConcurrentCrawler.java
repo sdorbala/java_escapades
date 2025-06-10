@@ -38,10 +38,10 @@ public class ConcurrentCrawler {
             Logger.error(ie, ie.getMessage());
             // only the top most one??
         } finally {
+            rateLimiter.shutdown(); // stop refilling the tokenBucket
             executorService.shutdown();
             while (!executorService.isTerminated()) {
-                // just wait in mainthread for executors to complete
-                rateLimiter.shutdown(); // stop refilling the tokenBucket
+                Logger.info("Shutting down executorService...");
             }
             if(!errors.isEmpty()) {
                 Logger.error(errors.toString());
